@@ -11,9 +11,10 @@ public class TestConnection extends Thread {
     private int minute;
     private int number;
 
-    public TestConnection(int number, String ip) {
+    public TestConnection(int number, String ip, int prior) {
         this.ip = ip;
         this.number = number;
+        this.setPriority(prior);
     }
 
     @Override
@@ -27,6 +28,9 @@ public class TestConnection extends Thread {
             }
             minute = minute + 5;
         }
+        System.out.println("Поток "+number+" завершил работу.");
+        this.interrupt();
+
 
     }
 
